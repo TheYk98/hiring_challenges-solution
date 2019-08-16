@@ -1,6 +1,6 @@
 package google_prep;
 import java.util.*;
-public class errors {
+public class check_the_number {
 	public static void main(String[] args) {
 			Scanner sc=new Scanner(System.in);
 		List<String> ph_nos=new ArrayList<String>();
