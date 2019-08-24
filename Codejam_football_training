@@ -1,0 +1,52 @@
+
+#include<limits.h>
+#include<stdio.h>
+int sort(int* arr,int n)
+{
+    int i,j,temp;
+    for(i=0;i<n;i++)
+     for(j=0;j<n-i-1;j++)
+      {
+          if(arr[j]>arr[j+1])
+          {
+              temp=arr[j];
+              arr[j]=arr[j+1];
+              arr[j+1]=temp;
+          }
+      }
+}
+int find_max(int* arr,int n,int p)
+{
+    //iterate until the end of the sub array is reached
+    int stop=n-p+1;//if 5 students i pick 4, i will have 2 iterations
+    int res=INT_MAX,training_time,max_of_sub_array,inneritr,outeritr;
+
+    for(outeritr=0;outeritr<stop;outeritr++)
+    {training_time=0;
+        //sub array will start from outer itr and end at outer itr+p-1
+        max_of_sub_array=arr[outeritr+p-1];
+        for(inneritr=outeritr;inneritr<(outeritr+p-1);inneritr++)
+         training_time+=max_of_sub_array-arr[inneritr];
+
+        if(res>training_time)
+         res=training_time;
+    }
+    return res;
+}
+int main()
+{   int n,solution,p,t,itr,i=1;
+    scanf("%d",&t);
+    while(t--)
+    {
+       scanf("%d%d",&n,&p);
+        int arr[n];
+        for(itr=0;itr<n;itr++)
+        scanf("%d",&arr[itr]);
+
+        sort(arr,n);
+     // for(itr=0;itr<n;itr++)
+       //  printf("%d ",arr[itr]);
+        solution=find_max(arr,n,p);
+        printf("Case #%d: %d",i++,solution);
+    }
+}
